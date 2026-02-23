@@ -91,7 +91,7 @@ async function createTransaction(req,res) {
         })
     }
 
-
+    let transaction;
     try{
 
     
@@ -102,7 +102,7 @@ async function createTransaction(req,res) {
     const session = await mongoose.startSession()
     session.startTransaction()
 
-    const transaction = (await transactionModel.create([{
+    transaction = (await transactionModel.create([{
         fromAccount,
         toAccount,
         amount,
