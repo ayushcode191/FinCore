@@ -31,13 +31,27 @@ async function getAccountBalanceController(req,res) {
     })
 
     if(!account){
-        return res.status
+        return res.status(404).json({
+            message: "Account not found"
+        })
     }
+
+    const balance = await account.getBalance();
+
+    res.status(200).json({
+        accountId: account._id,
+        balance: balance
+    })
+
+
+
+
     
 }
 
 
 module.exports = {
     createAccountController,
-    getUserAccountsController
+    getUserAccountsController,
+    getAccountBalanceController
 }
